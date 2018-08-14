@@ -1,0 +1,17 @@
+<h1>Welcome to Restaurant Battle</h1>
+<% if @battles.length != 0 %>
+
+<% if @battles.last.queue? %>
+<h3>Next Battle</h3>
+<%= link_to 'Battle is about to start!', battle_path(@battles.last) %>
+<% elsif @battles.last.running? %>
+<h3>Current Battle</h3>
+<%= link_to 'Hurry up! The battles is about to finish!', battle_path(@battles.last) %>
+<% end %>
+
+<h3>Past Battles</h3>
+<% @battles.each do |battle| %>
+  <%= link_to 'Battle', battle_path(battle) if battle.ended?%>
+<% end %>
+
+<% end %>
